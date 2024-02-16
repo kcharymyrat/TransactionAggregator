@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/Transaction_Aggregator.iml" filepath="$PROJECT_DIR$/.idea/modules/Transaction_Aggregator.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/Transaction Aggregator/task/Transaction_Aggregator.Transaction_Aggregator-task.iml" filepath="$PROJECT_DIR$/.idea/modules/Transaction Aggregator/task/Transaction_Aggregator.Transaction_Aggregator-task.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/Transaction Aggregator/task/Transaction_Aggregator.Transaction_Aggregator-task.main.iml" filepath="$PROJECT_DIR$/.idea/modules/Transaction Aggregator/task/Transaction_Aggregator.Transaction_Aggregator-task.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/Transaction Aggregator/task/Transaction_Aggregator.Transaction_Aggregator-task.test.iml" filepath="$PROJECT_DIR$/.idea/modules/Transaction Aggregator/task/Transaction_Aggregator.Transaction_Aggregator-task.test.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/util/Transaction_Aggregator.util.iml" filepath="$PROJECT_DIR$/.idea/modules/util/Transaction_Aggregator.util.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/util/Transaction_Aggregator.util.main.iml" filepath="$PROJECT_DIR$/.idea/modules/util/Transaction_Aggregator.util.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/util/Transaction_Aggregator.util.test.iml" filepath="$PROJECT_DIR$/.idea/modules/util/Transaction_Aggregator.util.test.iml" />
+    </modules>
+  </component>
+</project>

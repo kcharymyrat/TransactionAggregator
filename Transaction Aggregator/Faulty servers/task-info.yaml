@@ -1,0 +1,316 @@
+type: edu
+files:
+  - name: src/aggregator/Application.java
+    visible: true
+    text: |+
+      package aggregator;
+      
+      import org.springframework.boot.SpringApplication;
+      import org.springframework.boot.autoconfigure.SpringBootApplication;
+      import org.springframework.web.bind.annotation.GetMapping;
+      import org.springframework.web.bind.annotation.RestController;
+      import org.springframework.web.client.RestTemplate;
+      
+      @SpringBootApplication
+      public class Application {
+          public static void main(String[] args) {
+              SpringApplication.run(Application.class, args);
+          }
+      }
+    
+    learner_created: false
+  - name: src/resources/application.properties
+    visible: true
+    learner_created: false
+  - name: build.gradle
+    visible: true
+    text: |
+      buildscript {
+          apply plugin: 'hyperskill'
+      
+          repositories {
+              mavenCentral()
+          }
+      
+          dependencies {
+              classpath "org.springframework.boot:spring-boot-gradle-plugin:$hs.spring.bootVersion"
+              classpath "io.spring.gradle:dependency-management-plugin:$hs.spring.dependencyManagementVersion"
+          }
+      }
+      
+      apply plugin: 'java'
+      apply plugin: 'org.springframework.boot'
+      apply plugin: 'io.spring.dependency-management'
+      
+      repositories {
+          mavenCentral()
+      }
+      
+      sourceSets.main.resources.srcDirs = ["src/resources"]
+      
+      dependencies {
+          implementation 'org.springframework.boot:spring-boot-starter'
+          implementation 'org.springframework.boot:spring-boot-starter-actuator'
+          implementation 'org.springframework.boot:spring-boot-starter-web'
+      }
+      
+      test {
+          jvmArgs '--add-opens', 'java.base/java.lang=ALL-UNNAMED'
+      }
+    learner_created: false
+  - name: test/ApplicationTests.java
+    visible: false
+    text: |
+      import org.hyperskill.hstest.dynamic.DynamicTest;
+      import org.hyperskill.hstest.dynamic.input.DynamicTesting;
+      import org.hyperskill.hstest.exception.outcomes.WrongAnswer;
+      import org.hyperskill.hstest.mocks.web.response.HttpResponse;
+      import org.hyperskill.hstest.stage.SpringTest;
+      import org.hyperskill.hstest.testcase.CheckResult;
+      import org.hyperskill.hstest.testing.expect.json.builder.JsonArrayBuilder;
+      import org.hyperskill.hstest.testing.expect.json.builder.JsonObjectBuilder;
+      
+      import java.util.Comparator;
+      import java.util.List;
+      import java.util.stream.Stream;
+      
+      import static org.hyperskill.hstest.testing.expect.Expectation.expect;
+      import static org.hyperskill.hstest.testing.expect.json.JsonChecker.isArray;
+      import static org.hyperskill.hstest.testing.expect.json.JsonChecker.isObject;
+      
+      public class ApplicationTests extends SpringTest {
+          private final DataServer dataServer1 = new DataServer("server-1", 8888, "033", "128");
+          private final DataServer dataServer2 = new DataServer("server-2", 8889, "033", "128");
+      
+          CheckResult testAggregate(String account) {
+              CheckResult result;
+              var response = get("/aggregate")
+                      .addParam("account", account)
+                      .send();
+      
+              System.out.println(getRequestDetails(response));
+      
+              if (response.getStatusCode() == 200) {
+                  var list1 = dataServer1.getTransactions(account);
+                  var list2 = dataServer2.getTransactions(account);
+                  var expected = Stream.of(list1, list2)
+                          .flatMap(List::stream)
+                          .sorted(Comparator.comparing(Transaction::timestamp).reversed())
+                          .toList();
+                  try {
+                      checkJson(response, expected);
+                      result = CheckResult.correct();
+                  } catch (WrongAnswer e) {
+                      result = CheckResult.wrong(e.getFeedbackText());
+                  }
+              } else {
+                  result = CheckResult.wrong("Expected response status code 200 but got " + response.getStatusCode());
+              }
+      
+              if (!result.isCorrect()) {
+                  dataServer1.stop();
+                  dataServer2.stop();
+              }
+      
+              return result;
+          }
+      
+          CheckResult stopMockServers() {
+              dataServer1.stop();
+              dataServer2.stop();
+              return CheckResult.correct();
+          }
+      
+          private void checkJson(HttpResponse response, List<Transaction> expected) {
+              JsonArrayBuilder arrayBuilder = isArray(expected.size());
+              for (var tx : expected) {
+                  JsonObjectBuilder objectBuilder = isObject()
+                          .value("id", tx.id())
+                          .value("serverId", tx.serverId())
+                          .value("account", tx.account())
+                          .value("amount", tx.amount())
+                          .value("timestamp", tx.timestamp());
+                  arrayBuilder = arrayBuilder.item(objectBuilder);
+              }
+              expect(response.getContent()).asJson().check(arrayBuilder);
+          }
+      
+          private String getRequestDetails(HttpResponse response) {
+              var uri = response.getRequest().getUri();
+              var method = response.getRequest().getMethod();
+              return "\nRequest: %s %s".formatted(method, uri);
+          }
+      
+          @DynamicTest
+          DynamicTesting[] dt = new DynamicTesting[] {
+                  () -> testAggregate("033"),
+                  () -> testAggregate("033"),
+                  () -> testAggregate("033"),
+                  () -> testAggregate("128"),
+                  () -> testAggregate("128"),
+                  () -> testAggregate("128"),
+                  () -> testAggregate("255"),
+                  () -> testAggregate("255"),
+                  () -> testAggregate("255"),
+                  this::stopMockServers
+          };
+      }
+    learner_created: false
+  - name: test/DataServer.java
+    visible: false
+    text: |
+      import com.google.gson.Gson;
+      import com.sun.net.httpserver.HttpContext;
+      import com.sun.net.httpserver.HttpExchange;
+      import com.sun.net.httpserver.HttpHandler;
+      import com.sun.net.httpserver.HttpServer;
+      
+      import java.io.IOException;
+      import java.io.OutputStream;
+      import java.net.InetAddress;
+      import java.net.InetSocketAddress;
+      import java.nio.charset.StandardCharsets;
+      import java.time.LocalDateTime;
+      import java.util.ArrayList;
+      import java.util.Collections;
+      import java.util.HashMap;
+      import java.util.List;
+      import java.util.Map;
+      import java.util.Random;
+      import java.util.UUID;
+      import java.util.stream.Collectors;
+      import java.util.stream.Stream;
+      
+      class DataServer {
+          private final HttpServer server;
+          private final String serverId;
+          private final Map<String, List<Transaction>> transactions;
+      
+          public DataServer(String id, int port, String... accounts) {
+              serverId = id;
+              transactions = generate(accounts);
+              try {
+                  InetAddress address = InetAddress.getByName("127.0.0.1");
+                  server = HttpServer.create(new InetSocketAddress(address, port), 0);
+      
+                  HttpContext pingContext = server.createContext("/transactions");
+                  pingContext.setHandler(new TransactionsHttpHandler(transactions));
+      
+                  server.start();
+              } catch (IOException e) {
+                  throw new RuntimeException("Failed to start the local data service: " + e.getMessage());
+              }
+          }
+      
+          public List<Transaction> getTransactions(String account) {
+              return transactions.getOrDefault(account, List.of());
+          }
+      
+          public void stop() {
+              if (server != null) {
+                  server.stop(1);
+              }
+          }
+      
+          private Map<String, List<Transaction>> generate(String... accounts) {
+              var rnd = new Random();
+              Map<String, List<Transaction>> transactions = new HashMap<>(accounts.length);
+              for (var account : accounts) {
+                  var size = rnd.nextInt(3, 10);
+                  List<Transaction> txList = new ArrayList<>(size);
+                  for (int i = 0; i < size; i++) {
+                      var tx = new Transaction(
+                              UUID.randomUUID().toString(),
+                              serverId,
+                              account,
+                              String.valueOf(rnd.nextInt(10, 10_000)),
+                              LocalDateTime.now()
+                                      .minusDays(rnd.nextLong(1, 30))
+                                      .plusHours(rnd.nextInt(0, 24))
+                                      .plusMinutes(rnd.nextInt(0, 60))
+                                      .plusSeconds(rnd.nextInt(0, 60))
+                                      .toString()
+                      );
+                      txList.add(tx);
+                  }
+                  transactions.put(account, txList);
+              }
+              return transactions;
+          }
+      }
+      
+      class TransactionsHttpHandler implements HttpHandler {
+          private final Gson gson = new Gson();
+          private final Map<String, List<Transaction>> transactions;
+          private final List<Integer> responseCodes;
+          private int index = 0;
+      
+          public TransactionsHttpHandler(Map<String, List<Transaction>> transactions) {
+              this.transactions = transactions;
+              responseCodes = Stream.of(
+                              Stream.generate(() -> 503).limit(1).toList(),
+                              Stream.generate(() -> 529).limit(3).toList(),
+                              Stream.generate(() -> 200).limit(1).toList()
+                      )
+                      .flatMap(List::stream)
+                      .collect(Collectors.toCollection(ArrayList::new));
+              Collections.shuffle(responseCodes);
+          }
+      
+          @Override
+          public void handle(HttpExchange exchange) throws IOException {
+              if ("GET".equals(exchange.getRequestMethod())) {
+                  var tx = parseQuery(exchange);
+                  var code = responseCodes.get(index);
+                  String body = "";
+                  index = (index + 1) % responseCodes.size();
+                  if (code != 200) {
+                      exchange.sendResponseHeaders(code, 0);
+                  } else {
+                      body = gson.toJson(tx);
+                      exchange.getResponseHeaders().add("Content-Type", "application/json");
+                      exchange.sendResponseHeaders(code, body.length());
+                  }
+                  try (OutputStream os = exchange.getResponseBody()) {
+                      os.write(body.getBytes());
+                  }
+              } else {
+                  var body = "Method not supported";
+                  exchange.sendResponseHeaders(405, body.length());
+                  try (OutputStream os = exchange.getResponseBody()) {
+                      os.write(body.getBytes(StandardCharsets.UTF_8));
+                  }
+              }
+          }
+      
+          private List<Transaction> parseQuery(HttpExchange exchange) {
+              var query = exchange.getRequestURI().getQuery();
+              if (query == null) {
+                  return List.of();
+              }
+              var queryParams = query.split("&");
+              for (var param : queryParams) {
+                  var parts = param.split("=");
+                  if (parts.length < 2) {
+                      continue;
+                  }
+                  if ("account".equalsIgnoreCase(parts[0])) {
+                      return transactions.getOrDefault(parts[1], List.of());
+                  }
+              }
+              return List.of();
+          }
+      }
+      
+      record Transaction(
+              String id,
+              String serverId,
+              String account,
+              String amount,
+              String timestamp
+      ) {
+      }
+    learner_created: false
+feedback_link: https://hyperskill.org/projects/424/stages/2486/implement#comment
+status: Unchecked
+record: -1

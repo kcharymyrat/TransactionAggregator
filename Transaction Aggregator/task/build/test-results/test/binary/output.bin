@@ -1,0 +1,27 @@
+[1;31m
+Start test 1[0m
+	[0;34m
+4[0m[0;34m  .   ____          _            __ _ _
+5[0m[0;34m /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+6[0m[0;34m( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+7[0m[0;34m \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+6[0m[0;34m  '  |____| .__|_| |_|_| |_\__, | / / / /
+5[0m[0;34m =========|_|==============|___/=/_/_/_/
+7[0m[0;34m :: Spring Boot ::                (v3.0.2)
+[0m[0;34m
+Ö[0m[0;34m2024-02-16T07:59:55.287+05:00  INFO 13000 --- [    Test worker] aggregator.Application                   : Starting Application using Java 17.0.5 with PID 13000 (started by User in D:\JetBrainsWork\Transaction Aggregator\Transaction Aggregator\task)
+∫[0m[0;34m2024-02-16T07:59:55.303+05:00  INFO 13000 --- [    Test worker] aggregator.Application                   : No active profile set, falling back to 1 default profile: "default"
+£[0m[0;34m2024-02-16T07:59:57.802+05:00  INFO 13000 --- [    Test worker] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+ê[0m[0;34m2024-02-16T07:59:57.825+05:00  INFO 13000 --- [    Test worker] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+¶[0m[0;34m2024-02-16T07:59:57.826+05:00  INFO 13000 --- [    Test worker] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.5]
+©[0m[0;34m2024-02-16T07:59:57.982+05:00  INFO 13000 --- [    Test worker] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+∂[0m[0;34m2024-02-16T07:59:57.986+05:00  INFO 13000 --- [    Test worker] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 2574 ms
+´[0m[0;34m2024-02-16T07:59:58.998+05:00  INFO 13000 --- [    Test worker] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 1 endpoint(s) beneath base path '/actuator'
+≤[0m[0;34m2024-02-16T07:59:59.245+05:00  INFO 13000 --- [    Test worker] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
+∑[0m[0;34m2024-02-16T07:59:59.282+05:00  INFO 13000 --- [    Test worker] aggregator.Application                   : Started Application in 4.666 seconds (process running for 6.013)
+¨[0;34m2024-02-16T07:59:59.729+05:00  INFO 13000 --- [nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+ü[0m[0;34m2024-02-16T07:59:59.730+05:00  INFO 13000 --- [nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+ó[0m[0;34m2024-02-16T07:59:59.733+05:00  INFO 13000 --- [nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 3 ms
+[0m[0;34m
+9[0m[0;34mRequest: GET http://localhost:8080/aggregate
+[0m

@@ -1,0 +1,179 @@
+type: edu
+files:
+  - name: src/aggregator/Application.java
+    visible: true
+    text: |+
+      package aggregator;
+      
+      import org.springframework.boot.SpringApplication;
+      import org.springframework.boot.autoconfigure.SpringBootApplication;
+      import org.springframework.web.bind.annotation.GetMapping;
+      import org.springframework.web.bind.annotation.RestController;
+      import org.springframework.web.client.RestTemplate;
+      
+      @SpringBootApplication
+      public class Application {
+          public static void main(String[] args) {
+              SpringApplication.run(Application.class, args);
+          }
+      }
+    
+    learner_created: false
+  - name: src/resources/application.properties
+    visible: true
+    learner_created: false
+  - name: test/ApplicationTests.java
+    visible: false
+    text: |
+      import org.hyperskill.hstest.dynamic.DynamicTest;
+      import org.hyperskill.hstest.dynamic.input.DynamicTesting;
+      import org.hyperskill.hstest.mocks.web.response.HttpResponse;
+      import org.hyperskill.hstest.stage.SpringTest;
+      import org.hyperskill.hstest.testcase.CheckResult;
+      
+      import java.util.UUID;
+      
+      public class ApplicationTests extends SpringTest {
+          private final String serverId = UUID.randomUUID().toString();
+          private final DataServer dataServer = new DataServer(serverId);
+      
+          CheckResult testPing() {
+              CheckResult result;
+              var response = get("/aggregate").send();
+      
+              System.out.println(getRequestDetails(response));
+      
+              if (response.getStatusCode() == 200) {
+                  var expected = "Pong from " + serverId;
+                  var actual = response.getContent();
+                  if (expected.equals(actual)) {
+                      result = CheckResult.correct();
+                  } else {
+                      result = CheckResult.wrong(
+                              "Response doesn't contain the expected body.\nExpected: %s\n  Actual: %s\n"
+                                      .formatted(expected, actual)
+                      );
+                  }
+              } else {
+                  result = CheckResult.wrong("Expected response status code 200 but got " + response.getStatusCode());
+              }
+      
+              dataServer.stop();
+              return result;
+          }
+      
+          private String getRequestDetails(HttpResponse response) {
+              var uri = response.getRequest().getUri();
+              var method = response.getRequest().getMethod();
+              return "\nRequest: %s %s".formatted(method, uri);
+          }
+      
+          @DynamicTest
+          DynamicTesting[] dt = new DynamicTesting[] {
+                  this::testPing
+          };
+      }
+    learner_created: false
+  - name: test/DataServer.java
+    visible: false
+    text: |
+      import com.sun.net.httpserver.HttpContext;
+      import com.sun.net.httpserver.HttpExchange;
+      import com.sun.net.httpserver.HttpHandler;
+      import com.sun.net.httpserver.HttpServer;
+      import org.hyperskill.hstest.exception.outcomes.WrongAnswer;
+      
+      import java.io.IOException;
+      import java.io.OutputStream;
+      import java.net.InetAddress;
+      import java.net.InetSocketAddress;
+      
+      public class DataServer {
+          private final HttpServer server;
+          public DataServer(String id) {
+              try {
+                  InetAddress address = InetAddress.getByName("127.0.0.1");
+                  server = HttpServer.create(new InetSocketAddress(address, 8889), 0);
+      
+                  HttpContext pingContext = server.createContext("/ping");
+                  pingContext.setHandler(new PingHttpHandler(id));
+      
+                  server.start();
+              } catch (IOException e) {
+                  throw new WrongAnswer("Failed to start the local data service: " + e.getMessage());
+              }
+          }
+      
+          public void stop() {
+              if (server != null) {
+                  server.stop(1);
+              }
+          }
+      }
+      
+      class PingHttpHandler implements HttpHandler {
+          private final String serverId;
+      
+          public PingHttpHandler(String id) {
+              serverId = id;
+          }
+      
+          @Override
+          public void handle(HttpExchange exchange) throws IOException {
+              if ("GET".equals(exchange.getRequestMethod())) {
+                  exchange.getResponseHeaders().set("Content-Type", "text/plain");
+                  var body = "Pong from " + serverId;
+                  exchange.sendResponseHeaders(200, body.getBytes().length);
+      
+                  try (OutputStream outputStream = exchange.getResponseBody()){
+                      outputStream.write(body.getBytes());
+                  }
+              }
+          }
+      }
+    learner_created: false
+  - name: build.gradle
+    visible: true
+    text: |
+      buildscript {
+          apply plugin: 'hyperskill'
+      
+          repositories {
+              mavenCentral()
+          }
+      
+          dependencies {
+              classpath "org.springframework.boot:spring-boot-gradle-plugin:$hs.spring.bootVersion"
+              classpath "io.spring.gradle:dependency-management-plugin:$hs.spring.dependencyManagementVersion"
+          }
+      }
+      
+      apply plugin: 'java'
+      apply plugin: 'org.springframework.boot'
+      apply plugin: 'io.spring.dependency-management'
+      
+      repositories {
+          mavenCentral()
+      }
+      
+      sourceSets.main.resources.srcDirs = ["src/resources"]
+      
+      dependencies {
+          implementation 'org.springframework.boot:spring-boot-starter'
+          implementation 'org.springframework.boot:spring-boot-starter-actuator'
+          implementation 'org.springframework.boot:spring-boot-starter-web'
+      }
+      
+      test {
+          jvmArgs '--add-opens', 'java.base/java.lang=ALL-UNNAMED'
+      }
+    learner_created: false
+feedback_link: https://hyperskill.org/projects/424/stages/2484/implement#comment
+status: Failed
+feedback:
+  message: |-
+    Wrong answer in test #1
+
+    Expected response status code 200 but got 404
+  time: "Fri, 16 Feb 2024 03:00:01 UTC"
+record: -1
