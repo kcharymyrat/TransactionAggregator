@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="ApplicationTests" tests="1" skipped="0" failures="0" errors="0" timestamp="2024-02-16T14:00:30" hostname="WIN-PK97IO7J39D" time="7.208">
+<testsuite name="ApplicationTests" tests="1" skipped="0" failures="0" errors="0" timestamp="2024-02-16T15:15:18" hostname="WIN-PK97IO7J39D" time="7.294">
   <properties/>
-  <testcase name="start" classname="ApplicationTests" time="7.208"/>
+  <testcase name="start" classname="ApplicationTests" time="7.294"/>
   <system-out><![CDATA[?[1;31m
 Start test 1?[0m
 ?[0;34m
@@ -13,31 +13,55 @@ Start test 1?[0m
 ?[0m?[0;34m =========|_|==============|___/=/_/_/_/
 ?[0m?[0;34m :: Spring Boot ::                (v3.0.2)
 ?[0m?[0;34m
-?[0m?[0;34m2024-02-16T19:00:31.726+05:00  INFO 340 --- [    Test worker] aggregator.Application                   : Starting Application using Java 17.0.5 with PID 340 (started by User in D:\JetBrainsWork\Transaction Aggregator\Transaction Aggregator\task)
-?[0m?[0;34m2024-02-16T19:00:31.731+05:00  INFO 340 --- [    Test worker] aggregator.Application                   : No active profile set, falling back to 1 default profile: "default"
-?[0m?[0;34m2024-02-16T19:00:33.791+05:00  INFO 340 --- [    Test worker] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
-?[0m?[0;34m2024-02-16T19:00:33.809+05:00  INFO 340 --- [    Test worker] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
-?[0m?[0;34m2024-02-16T19:00:33.810+05:00  INFO 340 --- [    Test worker] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.5]
-?[0m?[0;34m2024-02-16T19:00:33.933+05:00  INFO 340 --- [    Test worker] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
-?[0m?[0;34m2024-02-16T19:00:33.936+05:00  INFO 340 --- [    Test worker] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 2126 ms
-?[0m?[0;34m2024-02-16T19:00:34.790+05:00  INFO 340 --- [    Test worker] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 1 endpoint(s) beneath base path '/actuator'
-?[0m?[0;34m2024-02-16T19:00:34.870+05:00  INFO 340 --- [    Test worker] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
-?[0m?[0;34m2024-02-16T19:00:34.894+05:00  INFO 340 --- [    Test worker] aggregator.Application                   : Started Application in 3.726 seconds (process running for 4.899)
-?[0;34m2024-02-16T19:00:35.412+05:00  INFO 340 --- [nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
-?[0m?[0;34m2024-02-16T19:00:35.418+05:00  INFO 340 --- [nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
-?[0m?[0;34m2024-02-16T19:00:35.422+05:00  INFO 340 --- [nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 2 ms
+?[0m?[0;34m2024-02-16T20:15:19.390+05:00  INFO 17104 --- [    Test worker] aggregator.Application                   : Starting Application using Java 17.0.5 with PID 17104 (started by User in D:\JetBrainsWork\Transaction Aggregator\Transaction Aggregator\task)
+?[0m?[0;34m2024-02-16T20:15:19.395+05:00  INFO 17104 --- [    Test worker] aggregator.Application                   : No active profile set, falling back to 1 default profile: "default"
+?[0m?[0;34m2024-02-16T20:15:21.334+05:00  INFO 17104 --- [    Test worker] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+?[0m?[0;34m2024-02-16T20:15:21.352+05:00  INFO 17104 --- [    Test worker] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+?[0m?[0;34m2024-02-16T20:15:21.353+05:00  INFO 17104 --- [    Test worker] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.5]
+?[0m?[0;34m2024-02-16T20:15:21.480+05:00  INFO 17104 --- [    Test worker] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+?[0m?[0;34m2024-02-16T20:15:21.484+05:00  INFO 17104 --- [    Test worker] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 2006 ms
+?[0m?[0;34m2024-02-16T20:15:22.328+05:00  INFO 17104 --- [    Test worker] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 1 endpoint(s) beneath base path '/actuator'
+?[0m?[0;34m2024-02-16T20:15:22.405+05:00  INFO 17104 --- [    Test worker] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
+?[0m?[0;34m2024-02-16T20:15:22.429+05:00  INFO 17104 --- [    Test worker] aggregator.Application                   : Started Application in 3.585 seconds (process running for 4.765)
+?[0;34m2024-02-16T20:15:22.912+05:00  INFO 17104 --- [nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+?[0m?[0;34m2024-02-16T20:15:22.913+05:00  INFO 17104 --- [nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+?[0m?[0;34m2024-02-16T20:15:22.916+05:00  INFO 17104 --- [nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 3 ms
 ?[0m?[0;34m
 ?[0m?[0;34mRequest: GET http://localhost:8080/aggregate?account=033
 ?[0m?[1;31m
 Start test 2?[0m
 ?[0;34m
-?[0m?[0;34mRequest: GET http://localhost:8080/aggregate?account=128
+?[0m?[0;34mRequest: GET http://localhost:8080/aggregate?account=033
 ?[0m?[1;31m
 Start test 3?[0m
 ?[0;34m
-?[0m?[0;34mRequest: GET http://localhost:8080/aggregate?account=255
+?[0m?[0;34mRequest: GET http://localhost:8080/aggregate?account=033
 ?[0m?[1;31m
 Start test 4?[0m
+?[0;34m
+?[0m?[0;34mRequest: GET http://localhost:8080/aggregate?account=128
+?[0m?[1;31m
+Start test 5?[0m
+?[0;34m
+?[0m?[0;34mRequest: GET http://localhost:8080/aggregate?account=128
+?[0m?[1;31m
+Start test 6?[0m
+?[0;34m
+?[0m?[0;34mRequest: GET http://localhost:8080/aggregate?account=128
+?[0m?[1;31m
+Start test 7?[0m
+?[0;34m
+?[0m?[0;34mRequest: GET http://localhost:8080/aggregate?account=255
+?[0m?[1;31m
+Start test 8?[0m
+?[0;34m
+?[0m?[0;34mRequest: GET http://localhost:8080/aggregate?account=255
+?[0m?[1;31m
+Start test 9?[0m
+?[0;34m
+?[0m?[0;34mRequest: GET http://localhost:8080/aggregate?account=255
+?[0m?[1;31m
+Start test 10?[0m
 ]]></system-out>
   <system-err><![CDATA[]]></system-err>
 </testsuite>
