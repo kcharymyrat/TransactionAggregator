@@ -168,12 +168,12 @@ files:
           jvmArgs '--add-opens', 'java.base/java.lang=ALL-UNNAMED'
       }
     learner_created: false
+  - name: src/aggregator/AppController.java
+    visible: true
+    learner_created: true
 feedback_link: https://hyperskill.org/projects/424/stages/2484/implement#comment
-status: Failed
+status: Solved
 feedback:
-  message: |-
-    Wrong answer in test #1
-
-    Expected response status code 200 but got 404
-  time: "Fri, 16 Feb 2024 03:00:01 UTC"
-record: -1
+  message: Congratulations!
+  time: "Fri, 16 Feb 2024 12:43:27 UTC"
+record: 1
