@@ -81,7 +81,13 @@ public class ApplicationTests extends SpringTest {
     @DynamicTest
     DynamicTesting[] dt = new DynamicTesting[] {
             () -> testAggregate("033"),
+            () -> testAggregate("033"),
+            () -> testAggregate("033"),
             () -> testAggregate("128"),
+            () -> testAggregate("128"),
+            () -> testAggregate("128"),
+            () -> testAggregate("255"),
+            () -> testAggregate("255"),
             () -> testAggregate("255"),
             this::stopMockServers
     };

@@ -308,6 +308,12 @@ files:
       
       }
     learner_created: true
+  - name: src/aggregator/TransactionDTO.java
+    visible: true
+    learner_created: true
 feedback_link: https://hyperskill.org/projects/424/stages/2485/implement#comment
-status: Unchecked
-record: -1
+status: Solved
+feedback:
+  message: Congratulations!
+  time: "Fri, 16 Feb 2024 14:00:38 UTC"
+record: 2
