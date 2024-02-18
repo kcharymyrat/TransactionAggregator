@@ -377,7 +377,7 @@ files:
               String timestamp
       ) { }
     learner_created: true
-feedback_link: https://hyperskill.org/projects/424/stages/2486/implement#comment
+feedback_link: https://hyperskill.org/learn/step/40967#comment
 status: Solved
 feedback:
   message: Congratulations!

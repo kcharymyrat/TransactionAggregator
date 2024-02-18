@@ -311,7 +311,7 @@ files:
   - name: src/aggregator/TransactionDTO.java
     visible: true
     learner_created: true
-feedback_link: https://hyperskill.org/projects/424/stages/2485/implement#comment
+feedback_link: https://hyperskill.org/learn/step/40966#comment
 status: Solved
 feedback:
   message: Congratulations!

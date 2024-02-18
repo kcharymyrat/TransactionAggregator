@@ -9,37 +9,61 @@
 5[0m[0;34m =========|_|==============|___/=/_/_/_/
 7[0m[0;34m :: Spring Boot ::                (v3.0.2)
 [0m[0;34m
-…[0m[0;34m2024-02-16T20:15:19.390+05:00  INFO 17104 --- [    Test worker] aggregator.Application                   : Starting Application using Java 17.0.5 with PID 17104 (started by User in D:\JetBrainsWork\Transaction Aggregator\Transaction Aggregator\task)
-º[0m[0;34m2024-02-16T20:15:19.395+05:00  INFO 17104 --- [    Test worker] aggregator.Application                   : No active profile set, falling back to 1 default profile: "default"
-£[0m[0;34m2024-02-16T20:15:21.334+05:00  INFO 17104 --- [    Test worker] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
-[0m[0;34m2024-02-16T20:15:21.352+05:00  INFO 17104 --- [    Test worker] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
-¦[0m[0;34m2024-02-16T20:15:21.353+05:00  INFO 17104 --- [    Test worker] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.5]
-©[0m[0;34m2024-02-16T20:15:21.480+05:00  INFO 17104 --- [    Test worker] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
-¶[0m[0;34m2024-02-16T20:15:21.484+05:00  INFO 17104 --- [    Test worker] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 2006 ms
-«[0m[0;34m2024-02-16T20:15:22.328+05:00  INFO 17104 --- [    Test worker] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 1 endpoint(s) beneath base path '/actuator'
-²[0m[0;34m2024-02-16T20:15:22.405+05:00  INFO 17104 --- [    Test worker] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
-·[0m[0;34m2024-02-16T20:15:22.429+05:00  INFO 17104 --- [    Test worker] aggregator.Application                   : Started Application in 3.585 seconds (process running for 4.765)
-¬[0;34m2024-02-16T20:15:22.912+05:00  INFO 17104 --- [nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
-Ÿ[0m[0;34m2024-02-16T20:15:22.913+05:00  INFO 17104 --- [nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
-—[0m[0;34m2024-02-16T20:15:22.916+05:00  INFO 17104 --- [nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 3 ms
+…[0m[0;34m2024-02-18T17:17:56.061+05:00  INFO 15868 --- [    Test worker] aggregator.Application                   : Starting Application using Java 17.0.5 with PID 15868 (started by User in D:\JetBrainsWork\Transaction Aggregator\Transaction Aggregator\task)
+º[0m[0;34m2024-02-18T17:17:56.068+05:00  INFO 15868 --- [    Test worker] aggregator.Application                   : No active profile set, falling back to 1 default profile: "default"
+£[0m[0;34m2024-02-18T17:17:58.227+05:00  INFO 15868 --- [    Test worker] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+[0m[0;34m2024-02-18T17:17:58.248+05:00  INFO 15868 --- [    Test worker] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+¦[0m[0;34m2024-02-18T17:17:58.248+05:00  INFO 15868 --- [    Test worker] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.5]
+©[0m[0;34m2024-02-18T17:17:58.380+05:00  INFO 15868 --- [    Test worker] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+¶[0m[0;34m2024-02-18T17:17:58.385+05:00  INFO 15868 --- [    Test worker] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 2248 ms
+«[0m[0;34m2024-02-18T17:17:59.547+05:00  INFO 15868 --- [    Test worker] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 1 endpoint(s) beneath base path '/actuator'
+²[0m[0;34m2024-02-18T17:17:59.658+05:00  INFO 15868 --- [    Test worker] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
+·[0m[0;34m2024-02-18T17:17:59.682+05:00  INFO 15868 --- [    Test worker] aggregator.Application                   : Started Application in 4.233 seconds (process running for 5.483)
+¬[0;34m2024-02-18T17:18:00.254+05:00  INFO 15868 --- [nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+Ÿ[0m[0;34m2024-02-18T17:18:00.255+05:00  INFO 15868 --- [nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+—[0m[0;34m2024-02-18T17:18:00.258+05:00  INFO 15868 --- [nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 3 ms
+9[0;34mserver-2 is executing a long query for 800 ms...
+9[0;34mserver-1 is executing a long query for 800 ms...
+[0m[0;34m
+[0m[0;34m
+[0m[0;34m
+Ä[0m[0;34mTransations = [TransactionDTO[id=fc8c73b5-e0b4-42b2-aba8-56b48e5d0dc8, serverId=server-1, account=033, amount=9119, timestamp=2024-02-13T14:38:36.992965], TransactionDTO[id=e464af7c-e159-435e-96ba-507a25f58d44, serverId=server-1, account=033, amount=1320, timestamp=2024-02-13T06:19:25.990966200], TransactionDTO[id=124d7442-0033-40ee-b09f-8f287e2310ba, serverId=server-1, account=033, amount=7508, timestamp=2024-02-12T21:00:59.992965], TransactionDTO[id=c6fb83aa-afe6-4a29-a6fd-5599517e73c4, serverId=server-1, account=033, amount=2426, timestamp=2024-02-09T22:55:16.992965], TransactionDTO[id=8c3ba056-0fa9-4cd0-bdf8-4592b176f6bb, serverId=server-2, account=033, amount=4639, timestamp=2024-02-06T00:07:15.089963800], TransactionDTO[id=6b0a9792-1984-4431-a350-55bc57f6665b, serverId=server-1, account=033, amount=2462, timestamp=2024-02-03T07:09:04.991964600], TransactionDTO[id=68bffb84-2e27-485e-ac2c-192b224a4e0a, serverId=server-1, account=033, amount=788, timestamp=2024-01-31T13:57:03.991964600], TransactionDTO[id=9211d0db-e731-43d6-b7cb-1b92e0a44874, serverId=server-1, account=033, amount=5072, timestamp=2024-01-29T12:54:40.991964600], TransactionDTO[id=6c450557-4850-4181-b0c3-fcbb4279344f, serverId=server-1, account=033, amount=5863, timestamp=2024-01-29T07:19:21.991964600], TransactionDTO[id=2e568cbb-02a3-4179-9ed3-f8915cfdeafa, serverId=server-2, account=033, amount=4262, timestamp=2024-01-28T23:26:42.089963800], TransactionDTO[id=d0a27ba8-320e-40ca-beea-9229253b27df, serverId=server-1, account=033, amount=6847, timestamp=2024-01-26T09:52:33.991964600], TransactionDTO[id=e8c05579-4ca2-4377-95c9-a8eefdbc12d5, serverId=server-2, account=033, amount=5626, timestamp=2024-01-26T01:48:22.089963800]]
+[0m[0;34m
+[0m[0;34m
 [0m[0;34m
 E[0m[0;34mRequest: GET http://localhost:8080/aggregate?account=033
 [0m[1;31m
 Start test 2[0m
+>[0m[0;34mserver-1 is executing a long query for 1600 ms...
+>[0m[0;34mserver-2 is executing a long query for 1600 ms...
 [0;34m
-E[0m[0;34mRequest: GET http://localhost:8080/aggregate?account=033
+[0m[0;34m
+[0m[0;34m
+Â[0m[0;34mTransations = [TransactionDTO[id=f03e81f2-de13-42dd-bacd-4dcb15d9f6e5, serverId=server-1, account=128, amount=5447, timestamp=2024-02-15T18:28:03.992965], TransactionDTO[id=8ed29adc-94a7-43d9-ac2b-c317370c86ec, serverId=server-2, account=128, amount=3411, timestamp=2024-02-12T19:43:12.089963800], TransactionDTO[id=42831fd7-00de-4099-a122-bb9f319aa530, serverId=server-1, account=128, amount=9415, timestamp=2024-02-08T04:35:27.992965], TransactionDTO[id=b6319139-8383-4a10-aad1-275ab8736a71, serverId=server-2, account=128, amount=6916, timestamp=2024-02-06T09:39:20.090965100], TransactionDTO[id=8bdbfeea-eb7d-4c7c-a0ff-921df2d18a9a, serverId=server-2, account=128, amount=9405, timestamp=2024-02-05T01:35:10.090965100], TransactionDTO[id=9f5b2437-1628-469a-b0ba-a7428e56876b, serverId=server-1, account=128, amount=8822, timestamp=2024-02-03T03:20:14.992965], TransactionDTO[id=a112bbb5-e1a2-4eee-a6e4-a2d977480ad0, serverId=server-2, account=128, amount=6129, timestamp=2024-02-02T03:30:40.089963800], TransactionDTO[id=0f03395a-8040-4de0-b143-074363cb986b, serverId=server-1, account=128, amount=4098, timestamp=2024-01-25T16:57:16.993965100], TransactionDTO[id=31208d1c-0bac-4277-8ab9-c48460c833dc, serverId=server-1, account=128, amount=4564, timestamp=2024-01-24T16:22:55.992965], TransactionDTO[id=7f0ca6b9-8c07-4e30-a34b-38b69e56b6f8, serverId=server-1, account=128, amount=3769, timestamp=2024-01-24T15:09:58.993965100], TransactionDTO[id=928e754f-b1fe-4111-baa4-3615418f1360, serverId=server-2, account=128, amount=1453, timestamp=2024-01-21T00:25:39.090965100], TransactionDTO[id=f8ba4e64-8a85-42aa-8645-ccd9a0d24580, serverId=server-2, account=128, amount=2590, timestamp=2024-01-20T23:30:31.089963800]]
+[0m[0;34m
+[0m[0;34m
+[0;34m
+E[0m[0;34mRequest: GET http://localhost:8080/aggregate?account=128
 [0m[1;31m
 Start test 3[0m
+>[0m[0;34mserver-1 is executing a long query for 3200 ms...
+>[0m[0;34mserver-2 is executing a long query for 3200 ms...
 [0;34m
-E[0m[0;34mRequest: GET http://localhost:8080/aggregate?account=033
+[0m[0;34m
+[0m[0;34m
+[0m[0;34mTransations = []
+[0m[0;34m
+[0m[0;34m
+[0;34m
+E[0m[0;34mRequest: GET http://localhost:8080/aggregate?account=255
 [0m[1;31m
 Start test 4[0m
 [0;34m
-E[0m[0;34mRequest: GET http://localhost:8080/aggregate?account=128
+E[0m[0;34mRequest: GET http://localhost:8080/aggregate?account=033
 [0m[1;31m
 Start test 5[0m
 [0;34m
-E[0m[0;34mRequest: GET http://localhost:8080/aggregate?account=128
+E[0m[0;34mRequest: GET http://localhost:8080/aggregate?account=033
 [0m[1;31m
 Start test 6[0m
 [0;34m
@@ -47,7 +71,7 @@
 [0m[1;31m
 Start test 7[0m
 [0;34m
-E[0m[0;34mRequest: GET http://localhost:8080/aggregate?account=255
+E[0m[0;34mRequest: GET http://localhost:8080/aggregate?account=128
 [0m[1;31m
 Start test 8[0m
 [0;34m
